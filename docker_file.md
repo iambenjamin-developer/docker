@@ -12,7 +12,7 @@ FROM [nombreImagen]:[tag]
 ```
 Ejp:
 ```
-FROM node:12.22.1-alpine93.11
+FROM node:12-alpine
 ```
 ## WORKDIR
 Declaramos donde vamos a poner todo nuestro trabajo.
@@ -66,4 +66,28 @@ ENTRYPOINT [ejecutable] [parametro1] [parametro2]
 Ejp:
 ```
 ENTRYPOINT ["/bin/echo", "Hello World"]
+```
+
+## Construir una imagen a partir de un DockerFile
+Si hacemos un build sin el tag, solo me va a generara una imagen con un id sin nombre
+
+```
+docker build -t [SetearNombreImagen] .
+```
+Ejp:
+```
+docker build -t getting-started .
+```
+
+## Correr una imagen creada a partir de un DockerFile
+-d detached significa que va a correr el proceso tras fondo.
+
+-p port le decimos que puerto local le va a corresponder al puerto de docker.
+
+```
+docker build -d -p 3000:3000 [nombreImagen]
+```
+Ejp:
+```
+docker build -d -p 3000:3000 getting-started
 ```
